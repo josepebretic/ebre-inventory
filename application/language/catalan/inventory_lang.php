@@ -207,3 +207,5 @@ $lang['users_fields_title']="Camps per defecte dels usuaris";
 $lang['groups_fields_title']="Camps per defecte dels grups";
 
 $lang['come_back']="Tornar";
+
+$lang['error_message_database_id_unespecified']="No s'ha especificat el id de base de dades";

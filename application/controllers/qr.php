@@ -10,6 +10,9 @@ class Qr extends CI_Controller {
         $this->load->database();
         $this->load->helper('url');
         $this->load->library('ciqrcode');        
+        $this->lang->load('inventory');
+        
+        $this->load->helper('language');       
  
     }
 	
@@ -18,15 +21,22 @@ class Qr extends CI_Controller {
 		$this->generate();
     }
     
-    public function generate()
-    {          
-       $params['data'] = 'Hola!';
+    public function generate($id)
+    {
+       if ($id != "") {
+                 
+       $view_url=base_url("/index.php/main/index/view/".$id);     
+       $params['data'] = $view_url;
        $params['level'] = 'H';
        $params['size'] = 10;
        $params['savename'] = FCPATH."/assets/uploads/qrcodes/test.png";
        $this->ciqrcode->generate($params);
        
        echo '<img src="'.base_url().'/assets/uploads/qrcodes/test.png" />';       
+       }
+       else {
+        show_error(lang('error_message_database_id_unespecified'));
+       }
     }
         
 }
